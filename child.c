@@ -1,4 +1,4 @@
-void func1(int arg1, int arg2)
+static void func1(int arg1, int arg2)
 {
     int k = arg2;
     while (arg1 != 100) {
