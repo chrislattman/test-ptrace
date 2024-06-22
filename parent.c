@@ -19,6 +19,7 @@ int main(void)
 
     pid_t pid = fork();
     if (pid == 0) {
+        // To trace an existing process use PTRACE_ATTACH
         ptrace(PTRACE_TRACEME, 0, NULL, NULL);
         execl("./child", "child", (char *) 0);
     } else {
