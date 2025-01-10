@@ -44,6 +44,13 @@ int main(void)
         printf("arg2 = *(sp + 8) = %d\n", data);
         ptrace(PTRACE_POKEDATA, pid, (void *) (regs.sp + 12), (void *) 100);
 #endif
+        // ptrace(PTRACE_SINGLESTEP, pid, NULL, NULL);
+        // ptrace(PTRACE_GETREGSET, pid, (void *) NT_PRSTATUS, &iov);
+        // from here read data from the memory address stored in either
+        // regs.rip (amd64) or regs.pc (arm64)
+        // this is how you can tell a function is about to be called (call/bl)
+        // optionally use libcapstone to decode the bytes into a human-readable
+        // instruction
         ptrace(PTRACE_CONT, pid, NULL, NULL);
         wait(NULL);
     }
